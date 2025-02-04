@@ -48,7 +48,7 @@ def Download_video(url):
             Filename=re.sub(r'[\/:*?"<>|]', '',res+videos[i].title)
             videos[i].download(filename=Filename+".mp4")
             audio.download(filename=Filename+".mp3")
-            command_ = f'MP4Box -add "{Filename}.mp4" -add "{Filename}.mp3" -new "{Filename}_final.mp4"'
+            command_ = f'MP4Box -add "{Filename}.mp4" -add "{Filename}.mp3" -new "output/videos/{Filename}_final.mp4"'
             os.system(command_)
             os.remove(f"{Filename}.mp4")
             os.remove(f"{Filename}.mp3")
@@ -80,7 +80,7 @@ def Download_audio(url):
             """)
     audio=yt.streams.filter(only_audio=True,adaptive=True)[0]
     Filename=re.sub(r'[\/:*?"<>|]', '',yt.title)
-    audio.download(filename=Filename+".mp3")
+    audio.download(output_path="output/audios",filename=f"{Filename}.mp3")
 
     ctext("Done 😁👌","green")
 while True:
